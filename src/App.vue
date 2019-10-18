@@ -16,7 +16,16 @@
             <div class="card">
               <div class="card-body">
                 <ul class="list-group">
-                  <li class="list-group-item" v-for="prefix in prefixes" :key="prefix">{{prefix}}</li>
+                  <li class="list-group-item" v-for="prefix in prefixes" :key="prefix">
+                    <div class="row">
+                      <div class="col-md">
+                        {{prefix}}
+                      </div>
+                      <div class="col-md text-right">
+                        <button class="btn btn-info" @click="removePrefix(prefix)"><span class="fa fa-trash"></span></button>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
                 <br />
                 <div class="input-group">
@@ -36,7 +45,16 @@
             <div class="card">
               <div class="card-body">
                 <ul class="list-group">
-                  <li class="list-group-item" v-for="sufix in sufixes" :key="sufix">{{sufix}}</li>
+                  <li class="list-group-item" v-for="sufix in sufixes" :key="sufix">
+                    <div class="row">
+                      <div class="col-md">
+                        {{sufix}}
+                      </div>
+                      <div class="col-md text-right">
+                        <button class="btn btn-info" @click="removeSufix(sufix)"><span class="fa fa-trash"></span></button>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
                 <br />
                 <div class="input-group">
@@ -109,6 +127,14 @@ export default {
 					this.domains.push(`${prefix}${sufix}`);
 				}
 			}
+		},
+		removePrefix(prefix) {
+			this.prefixes.splice(this.prefixes.indexOf(prefix), 1);
+			this.generate();
+		},
+		removeSufix(sufix) {
+			this.sufixes.splice(this.sufixes.indexOf(sufix), 1);
+			this.generate();
 		}
 	}
 };
